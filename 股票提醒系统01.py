@@ -1,14 +1,14 @@
-
+       
 import tushare #股票提醒系统 要用到tushare模块，它是一个开源的python财经数据接口包 
 import time
-#获取股票数据，封装在一个函数里面。
+#获取股票数据，封装在一个函数里面
 def getrealtimedata(share):		
 	dataNow=tushare.get_realtime_quotes(share.code)
 	share.name=dataNow.loc[0][0] #股票名，要提取下面的数据，name接收，用loc获取DataFrame这种数据类型,第一个中括号代表第几行，第二个中括号代表一行里面的第几个数据，和列表类似。
 	share.price=float(dataNow.loc[0][3]) #当前价格
 	share.high=dataNow.loc[0][4] #最高价
 	share.low=dataNow.loc[0][5] #最低价
-	share.volumn=dataNow.loc[0][8] #成交量，这是100股
+	share.volumn=dataNow.loc[0][8] #成交量,这是100股
 	share.amount=dataNow.loc[0][9] #成交金额
 	share.openToday=dataNow.loc[0][1] #当天开盘价
 	share.pre_close=dataNow.loc[0][2] #昨日收盘价
